@@ -67,7 +67,6 @@ namespace L5_Task1
             Console.WriteLine("The largest Value is: " + value);
         }
 
-
         private static void MethodTask4()
         {
             short shortValue = 100;
