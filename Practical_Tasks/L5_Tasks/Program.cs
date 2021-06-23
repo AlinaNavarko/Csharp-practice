@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace L5_Task1
+namespace L5_Tasks
 {
     class Program
     {
