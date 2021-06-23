@@ -9,6 +9,7 @@ namespace L5_Task1
             Console.WriteLine("Task1: An array can't be empty. Anyway it will be filled out with default values of the corresponding type"); //TASK 1
             MethodTask2();
             MethodTask3();
+            MethodTask4();
         }
 
         private static void MethodTask2()
@@ -34,7 +35,7 @@ namespace L5_Task1
             {
                 Console.WriteLine(i + ": " + arrayTypes[i]);
             }
-         }
+        }
 
         private static void MethodTask3()
         {
@@ -51,7 +52,7 @@ namespace L5_Task1
                 arrayNum[i] = arrayRnd.Next(100);
                 Console.Write(arrayNum[i] + " " + "| ");
             }
-            
+
             number = 0;
             value = arrayNum[number];
 
@@ -66,10 +67,15 @@ namespace L5_Task1
             Console.WriteLine("The largest Value is: " + value);
         }
 
-        /*
+
         private static void MethodTask4()
         {
             short shortValue = 100;
-            object obj = shortValue */
+            object obj = shortValue;
+            sbyte sbyteValue = (sbyte)(short)obj;
+            Console.WriteLine("Task4:");
+            Console.WriteLine("Type: " + shortValue.GetType());
+            Console.WriteLine("Type: " + sbyteValue.GetType());
         }
+    }
 }
