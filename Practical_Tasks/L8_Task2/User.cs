@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace L8_Task2
 {
@@ -18,21 +14,100 @@ namespace L8_Task2
 
         public Guid Id { get { return _id; } }
 
-        public string Login { get; set; }
-
-        public string Password
+        bool isValidLogin = false;
+        public string Login
         {
-           get { return _password; }
-           set
+            get { return _login; }
+            set
             {
-                if (value.Length != 8)
-                    Console.WriteLine("The length of password should be equal 8 symbols");
-                else _password = value;
+                while (!isValidLogin)
+                {
+                    if (value.Length > 5 && value.Contains("@"))
+                    {
+                        isValidLogin = true;
+                        _login = value;
+                    }
+
+                    else
+                    {
+                        Console.Write("The Login should be your email.Try Once Again:");
+                        value = Console.ReadLine();
+                    }
+                }
             }
         }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int rides { get; set; }
+
+        bool isValid = false;
+        public string Password
+        {
+            get { return _password; }
+            set
+            {
+                while (!isValid)
+                {
+                    if (value.Length == 8)
+                    {             
+                        isValid = true;
+                        _password = value;
+                    }
+                   
+                    else
+                    {
+                        Console.Write("The length of password should be equal to 8 symbols.Try Once Again:");
+                        value = Console.ReadLine();
+                    }
+                }
+            }
+        }
+
+        bool isValidFirstName = false;
+        public string FirstName
+        {
+            get { return _firstName; }
+            set
+            {
+                while (!isValidFirstName)
+                {
+                    if (value.Length > 0)
+                    {
+                        isValidFirstName = true;
+                        _firstName = value;
+                    }
+                    else
+                    {
+                        Console.Write("The First Name can't be empty.Try Once Again:");
+                        value = Console.ReadLine();
+                    }
+                }
+            }
+        }
+
+        bool isValidLastName = false;
+        public string LastName
+        {
+            get { return _lastName; }
+            set
+            {
+                while (!isValidLastName)
+                {
+                    if (value.Length > 0)
+                    {
+                        isValidLastName = true;
+                        _lastName = value;
+                    }
+                    else
+                    {
+                        Console.Write("The First Name can't be empty.Try Once Again:");
+                        value = Console.ReadLine();
+                    }
+                }
+            }
+        }
+
+        public int Rides
+        {
+            get { return _rides; }
+        }
 
         public int Year
         {
@@ -49,8 +124,9 @@ namespace L8_Task2
         {
         }
 
-        public User(string LastName, string FirstName) // Конструктор
+        public User() // Конструктор
         {
+            _rides = 0;
         }
     }
 }

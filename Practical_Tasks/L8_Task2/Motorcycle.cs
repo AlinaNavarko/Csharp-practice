@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace L8_Task2
 {
     class Motorcycle
     {
-        readonly Guid _id = Guid.NewGuid();
+        readonly Guid _motoId = Guid.NewGuid();
         string _producer;
         string _model;
         int _modelYear;
         int _odometer;
 
         // Public properties:
-        public Guid Id { get { return _id; } }
+        public Guid MotoId { get { return _motoId; } }
         public string Model
         {
             get { return _model; }
@@ -48,7 +44,11 @@ namespace L8_Task2
             set
             {
                 if (value < 1900)
-                    Console.WriteLine("The year is incorrect");
+                {
+                    Console.WriteLine("The year is incorrect. The current Year will be set.");
+                    _modelYear = DateTime.Now.Year;
+                }
+
                 else _modelYear = value;
             }
         }
@@ -57,7 +57,7 @@ namespace L8_Task2
             get { return _odometer; }
             set
             {
-                if (<0)
+                if (value < 0)
                 {
                     Console.WriteLine("The odometer can't be less than 0");
                     _odometer = 0;
