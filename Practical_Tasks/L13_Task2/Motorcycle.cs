@@ -29,8 +29,16 @@ namespace ConsoleApp9
 
         internal void DownloadNewSoftware()
         {
-            var getPackage = File.OpenRead("~/update.zip");
-            _isUpdateAvailable = false;
+            try
+            {
+                var getPackage = File.OpenRead("~/update.zip");
+                _isUpdateAvailable = false;
+            }
+            catch(FileNotFoundException e)
+            {
+                Console.WriteLine($"The file was not found {e}");
+                throw new FileNotFoundException(@"update.zip not in the directory", e);
+            }
         }
 
         public override string ToString()
