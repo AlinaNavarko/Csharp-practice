@@ -6,7 +6,8 @@ namespace ConsoleApp9
     class Motorcycle
     {
         public Guid VinNumber { get; set; }
-        public string Model => Model;
+        public string Model {get; set;}
+
         public DateTime[] Trips { get; set; }
         int _tripsCounter = default;
 
@@ -16,14 +17,25 @@ namespace ConsoleApp9
         {
           if (_isUpdateAvailable)
             DownloadNewSoftware();
-
-            VinNumber = Guid.Parse("f79564a4-5047-4799-8ea7-0bae9");
+            try
+            {
+                VinNumber = Guid.Parse("f79564a4-5047-4799-8ea7-0bae9");
+            }
+            catch (FormatException exF)
+            {
+                Console.WriteLine(exF.Message);
+            }
         }
 
         protected internal void Drive()
         {
             ++_tripsCounter;
-            Trips[_tripsCounter] = DateTime.Now;
+            try
+            { Trips[_tripsCounter] = DateTime.Now; }
+            catch (IndexOutOfRangeException exI)
+            {
+                Console.WriteLine(exI.Message);
+            }
             Console.WriteLine("Let's Drive!");
         }
 
@@ -34,16 +46,20 @@ namespace ConsoleApp9
                 var getPackage = File.OpenRead("~/update.zip");
                 _isUpdateAvailable = false;
             }
-            catch(FileNotFoundException e)
+            catch (DirectoryNotFoundException exD)
             {
-                Console.WriteLine($"The file was not found {e}");
-                throw new FileNotFoundException(@"update.zip not in the directory", e);
+                Console.WriteLine(exD.Message);
             }
         }
 
         public override string ToString()
         {
-            return Model ?? throw new NullReferenceException();
+            try
+            { return Model; }
+            catch (NullReferenceException exN)
+            { Console.WriteLine(exN.Message);
+                return default;
+            }
         }
     }
 }
